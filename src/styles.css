@@ -1,0 +1,313 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Navy Trust palette */
+  --background: oklch(0.98 0.005 250);
+  --foreground: oklch(0.18 0.04 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 260);
+  --primary: oklch(0.25 0.08 260);
+  --primary-foreground: oklch(0.98 0.005 250);
+  --secondary: oklch(0.94 0.015 255);
+  --secondary-foreground: oklch(0.25 0.08 260);
+  --muted: oklch(0.95 0.01 255);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --accent: oklch(0.55 0.13 250);
+  --accent-foreground: oklch(0.98 0.005 250);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --success: oklch(0.6 0.14 155);
+  --success-foreground: oklch(0.98 0.005 250);
+  --warning: oklch(0.75 0.15 75);
+  --warning-foreground: oklch(0.18 0.04 260);
+  --border: oklch(0.9 0.015 255);
+  --input: oklch(0.9 0.015 255);
+  --ring: oklch(0.55 0.13 250);
+  --chart-1: oklch(0.55 0.13 250);
+  --chart-2: oklch(0.6 0.14 155);
+  --chart-3: oklch(0.58 0.22 25);
+  --chart-4: oklch(0.75 0.15 75);
+  --chart-5: oklch(0.45 0.1 280);
+  --sidebar: oklch(0.18 0.04 260);
+  --sidebar-foreground: oklch(0.92 0.01 250);
+  --sidebar-primary: oklch(0.55 0.13 250);
+  --sidebar-primary-foreground: oklch(0.98 0.005 250);
+  --sidebar-accent: oklch(0.25 0.06 260);
+  --sidebar-accent-foreground: oklch(0.98 0.005 250);
+  --sidebar-border: oklch(0.3 0.05 260);
+  --sidebar-ring: oklch(0.55 0.13 250);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background:
+      radial-gradient(1200px 600px at -10% -10%, oklch(0.55 0.13 250 / 0.08), transparent 60%),
+      radial-gradient(900px 500px at 110% 0%, oklch(0.45 0.1 280 / 0.07), transparent 60%),
+      var(--color-background);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@theme inline {
+  --shadow-soft: 0 1px 2px oklch(0.18 0.04 260 / 0.04), 0 8px 24px -8px oklch(0.18 0.04 260 / 0.08);
+  --shadow-glow: 0 0 0 1px oklch(0.55 0.13 250 / 0.15), 0 12px 40px -12px oklch(0.55 0.13 250 / 0.35);
+}
+
+/* Custom Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -30px) scale(1.05); }
+  50% { transform: translate(0, -50px) scale(1); }
+  75% { transform: translate(-30px, -30px) scale(0.95); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, 20px); }
+}
+
+@keyframes pulse-glow-teal {
+  0%, 100% { 
+    box-shadow: 0 0 30px oklch(0.65 0.15 200 / 0.3), 
+                0 0 60px oklch(0.65 0.15 200 / 0.15);
+  }
+  50% { 
+    box-shadow: 0 0 50px oklch(0.65 0.15 200 / 0.5), 
+                0 0 100px oklch(0.65 0.15 200 / 0.3);
+  }
+}
+
+@keyframes scale-in-up {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow-teal {
+  animation: pulse-glow-teal 4s ease-in-out infinite;
+}
+
+.animate-scale-in-up {
+  animation: scale-in-up 0.7s ease-out forwards;
+}
+
+/* 3D Background */
+.dark-background {
+  background: linear-gradient(135deg, #05121A 0%, #0A1F2E 50%, #05121A 100%);
+}
+
+.bg-shape-3d {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(0, 212, 255, 0.3) 0%, 
+    rgba(0, 148, 177, 0.15) 40%, 
+    transparent 70%);
+  filter: blur(2px);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* 3D Stats */
+.stat-card-3d {
+  background: linear-gradient(135deg, 
+    rgba(5, 18, 26, 0.8) 0%, 
+    rgba(10, 31, 46, 0.9) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stat-card-3d:hover {
+  transform: translateY(-8px) rotateX(5deg) rotateY(-3deg);
+  box-shadow: 
+    0 12px 40px rgba(0, 212, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+/* Text colors for dark theme */
+.text-teal-glow {
+  color: #00D4FF;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.text-light-teal {
+  color: #A0E9FF;
+}
+
+
+/* Custom Animations */
+@keyframes spin3d {
+  from { transform: rotateY(0deg) rotateX(10deg); }
+  to { transform: rotateY(360deg) rotateX(10deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.55 0.13 250 / 0.3); }
+  50% { box-shadow: 0 0 40px oklch(0.55 0.13 250 / 0.6); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-spin3d {
+  animation: spin3d 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+/* 3D Background Elements */
+.bg-3d-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sphere-3d {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, oklch(0.55 0.13 250 / 0.15), oklch(0.45 0.1 280 / 0.1));
+  transform-style: preserve-3d;
+  box-shadow: 
+    inset -20px -20px 40px oklch(0.18 0.04 260 / 0.2),
+    inset 20px 20px 40px oklch(1 0 0 / 0.3);
+}
+
+.cube-3d {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  transform-style: preserve-3d;
+  animation: spin3d 15s linear infinite;
+}
+
+.cube-face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 2px solid oklch(0.55 0.13 250 / 0.3);
+  background: oklch(0.55 0.13 250 / 0.05);
+  backdrop-filter: blur(4px);
+}
+
+/* Make content sit above 3D background */
+.content-above {
+  position: relative;
+  z-index: 10;
+}
+
