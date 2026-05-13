@@ -168,7 +168,7 @@ function DashboardPage() {
                 </Pie>
                 <Tooltip 
                   contentStyle={{ 
-                    background: "rgba(5, 18, 26, 0.95)", 
+                    background: "rgba(246, 250, 253, 0.95)", 
                     border: "1px solid rgba(0, 212, 255, 0.3)",
                     borderRadius: "8px",
                     color: "#A0E9FF"
