@@ -86,8 +86,8 @@ function DashboardPage() {
 
   // Pipeline distribution data
   const pipelineData = [
-    { name: " DevIT Pipeline", value: 13500 },
-    { name: "Protaiga Pipeline", value: 3200 },
+    { name: "DevIT", value: 13500 },
+    { name: "Protaiga", value: 3200 },
     { name: "Deshwal", value: 1800 }
   ];
 
