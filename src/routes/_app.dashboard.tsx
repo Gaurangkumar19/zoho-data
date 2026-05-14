@@ -22,6 +22,7 @@ import {
   CartesianGrid,
   AreaChart,
   Area,
+  Legend,
 } from "recharts";
 
 export const Route = createFileRoute("/_app/dashboard")({
@@ -91,20 +92,20 @@ function DashboardPage() {
     { name: "Deshwal", value: 1800 }
   ];
 
-  // Monthly revenue data (placeholder)
+  // Monthly revenue data (placeholder) categorized by DevIT, Deshwal, and Protaiga
   const monthlyData = [
-    { month: "Jan", revenue: 1200000 },
-    { month: "Feb", revenue: 800000 },
-    { month: "Mar", revenue: 1500000 },
-    { month: "Apr", revenue: 1100000 },
-    { month: "May", revenue: 900000 },
-    { month: "Jun", revenue: 1300000 },
-    { month: "Jul", revenue: 1400000 },
-    { month: "Aug", revenue: 1600000 },
-    { month: "Sep", revenue: 1250000 },
-    { month: "Oct", revenue: 1700000 },
-    { month: "Nov", revenue: 1450000 },
-    { month: "Dec", revenue: 1900000 }
+    { month: "Jan", DevIT: 500000, Deshwal: 400000, Protaiga: 300000 },
+    { month: "Feb", DevIT: 350000, Deshwal: 250000, Protaiga: 200000 },
+    { month: "Mar", DevIT: 650000, Deshwal: 500000, Protaiga: 350000 },
+    { month: "Apr", DevIT: 450000, Deshwal: 400000, Protaiga: 250000 },
+    { month: "May", DevIT: 400000, Deshwal: 300000, Protaiga: 200000 },
+    { month: "Jun", DevIT: 550000, Deshwal: 450000, Protaiga: 300000 },
+    { month: "Jul", DevIT: 600000, Deshwal: 500000, Protaiga: 300000 },
+    { month: "Aug", DevIT: 700000, Deshwal: 550000, Protaiga: 350000 },
+    { month: "Sep", DevIT: 500000, Deshwal: 450000, Protaiga: 300000 },
+    { month: "Oct", DevIT: 750000, Deshwal: 600000, Protaiga: 350000 },
+    { month: "Nov", DevIT: 600000, Deshwal: 500000, Protaiga: 350000 },
+    { month: "Dec", DevIT: 850000, Deshwal: 650000, Protaiga: 400000 }
   ];
 
   return (
@@ -208,9 +209,17 @@ function DashboardPage() {
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={monthlyData}>
                 <defs>
-                  <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient id="colorDevIT" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#00D4FF" stopOpacity={0.3}/>
                     <stop offset="95%" stopColor="#00D4FF" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorDeshwal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#FF6B6B" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#FF6B6B" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorProtaiga" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#4ADE80" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#4ADE80" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1a365d" />
@@ -229,7 +238,7 @@ function DashboardPage() {
                   tickFormatter={(value) => `₹${(value/100000).toFixed(0)}L`}
                 />
                 <Tooltip 
-                  formatter={(value) => [`₹${Number(value).toLocaleString()}`, "Revenue"]}
+                  formatter={(value, name) => [`₹${Number(value).toLocaleString()}`, name]}
                   contentStyle={{ 
                     background: "rgba(5, 18, 26, 0.95)", 
                     border: "1px solid rgba(0, 212, 255, 0.3)",
@@ -237,13 +246,33 @@ function DashboardPage() {
                     color: "#A0E9FF"
                   }} 
                 />
+                <Legend 
+                  wrapperStyle={{ paddingTop: '20px' }} 
+                  formatter={(value) => <span className="text-cyan-100">{value}</span>}
+                />
                 <Area 
                   type="monotone" 
-                  dataKey="revenue" 
+                  dataKey="DevIT" 
                   stroke="#00D4FF" 
-                  strokeWidth={3}
+                  strokeWidth={2}
                   fillOpacity={1} 
-                  fill="url(#colorRevenue)" 
+                  fill="url(#colorDevIT)" 
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="Deshwal" 
+                  stroke="#FF6B6B" 
+                  strokeWidth={2}
+                  fillOpacity={1} 
+                  fill="url(#colorDeshwal)" 
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="Protaiga" 
+                  stroke="#4ADE80" 
+                  strokeWidth={2}
+                  fillOpacity={1} 
+                  fill="url(#colorProtaiga)" 
                 />
               </AreaChart>
             </ResponsiveContainer>
