@@ -98,7 +98,13 @@ function DashboardPage() {
     { month: "Mar", revenue: 1500000 },
     { month: "Apr", revenue: 1100000 },
     { month: "May", revenue: 900000 },
-    { month: "Jun", revenue: 1300000 }
+    { month: "Jun", revenue: 1300000 },
+    { month: "Jul", revenue: 1400000 },
+    { month: "Aug", revenue: 1600000 },
+    { month: "Sep", revenue: 1250000 },
+    { month: "Oct", revenue: 1700000 },
+    { month: "Nov", revenue: 1450000 },
+    { month: "Dec", revenue: 1900000 }
   ];
 
   return (
