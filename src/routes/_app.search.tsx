@@ -17,6 +17,14 @@ import {
 import { Search as SearchIcon } from "lucide-react";
 import { StatusBadge } from "./_app.inventory";
 import { z } from "zod";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const searchSchema = z.object({ q: z.string().optional().catch("") });
 
@@ -236,31 +244,31 @@ function SearchPage() {
 }
 
 function ExtraDetails({ extra }: { extra: Record<string, unknown> }) {
-  const [open, setOpen] = useState(false);
   const entries = Object.entries(extra ?? {});
   if (entries.length === 0) return <span className="text-cyan-200/60 text-xs">—</span>;
   
   return (
-    <div className="relative">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className="text-xs font-medium text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/30 underline-offset-4"
-      >
-        {open ? "Hide Details" : `View ${entries.length} Fields`}
-      </button>
-      
-      {open && (
-        <div className="absolute right-0 mt-2 w-72 p-3 bg-slate-900/95 border border-cyan-500/30 rounded-lg shadow-2xl z-50 backdrop-blur-md">
-          <div className="grid grid-cols-1 gap-y-2 text-[11px]">
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="text-xs font-medium text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/30 underline-offset-4">
+          View {entries.length} Fields
+        </button>
+      </DialogTrigger>
+      <DialogContent className="glass-card border-cyan-500/30 sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle className="text-cyan-100">Deal Details</DialogTitle>
+        </DialogHeader>
+        <ScrollArea className="max-h-[60vh] pr-4">
+          <div className="grid grid-cols-1 gap-y-3 py-4 text-sm">
             {entries.map(([k, v]) => (
-              <div key={k} className="flex justify-between border-b border-cyan-500/10 pb-1 last:border-0">
-                <span className="text-cyan-300/60 font-medium truncate mr-2">{k}</span>
-                <span className="text-cyan-100 text-right truncate max-w-[140px]">{String(v)}</span>
+              <div key={k} className="flex flex-col border-b border-cyan-500/10 pb-2 last:border-0">
+                <span className="text-cyan-300/60 text-[10px] font-bold uppercase tracking-wider">{k}</span>
+                <span className="text-cyan-100 mt-1 break-words font-medium">{String(v)}</span>
               </div>
             ))}
           </div>
-        </div>
-      )}
-    </div>
+        </ScrollArea>
+      </DialogContent>
+    </Dialog>
   );
 }
