@@ -239,22 +239,26 @@ function ExtraDetails({ extra }: { extra: Record<string, unknown> }) {
   const [open, setOpen] = useState(false);
   const entries = Object.entries(extra ?? {});
   if (entries.length === 0) return <span className="text-cyan-200/60 text-xs">—</span>;
+  
   return (
-    <div>
+    <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="text-xs text-teal-glow hover:underline"
+        className="text-xs font-medium text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/30 underline-offset-4"
       >
-        {open ? "Hide" : `+${entries.length} fields`}
+        {open ? "Hide Details" : `View ${entries.length} Fields`}
       </button>
+      
       {open && (
-        <div className="mt-2 max-w-xs space-y-1 text-xs">
-          {entries.map(([k, v]) => (
-            <div key={k} className="flex gap-2">
-              <span className="text-cyan-200/60">{k}:</span>
-              <span className="font-medium text-cyan-100 break-words">{String(v)}</span>
-            </div>
-          ))}
+        <div className="absolute right-0 mt-2 w-72 p-3 bg-slate-900/95 border border-cyan-500/30 rounded-lg shadow-2xl z-50 backdrop-blur-md">
+          <div className="grid grid-cols-1 gap-y-2 text-[11px]">
+            {entries.map(([k, v]) => (
+              <div key={k} className="flex justify-between border-b border-cyan-500/10 pb-1 last:border-0">
+                <span className="text-cyan-300/60 font-medium truncate mr-2">{k}</span>
+                <span className="text-cyan-100 text-right truncate max-w-[140px]">{String(v)}</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
