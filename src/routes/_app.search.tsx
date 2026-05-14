@@ -79,7 +79,7 @@ function SearchPage() {
           const { data, error } = await supabase
             .from("deals")
             .select("*")
-            .ilike("account_name", `%${active}%`)
+            .or(`account_name.ilike.%${active}%,deal_name.ilike.%${active}%`)
             .order("close_date", { ascending: false, nullsFirst: false })
             .range(from, from + limit - 1);
           if (error) {
@@ -120,9 +120,9 @@ function SearchPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-teal-glow">Search Account</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-teal-glow">Search Deals</h1>
         <p className="text-cyan-200/70 mt-1">
-          Type an account name and press Enter to view all related deals.
+          Type an account or deal name and press Enter to view all related deals.
         </p>
       </div>
 
@@ -138,7 +138,7 @@ function SearchPage() {
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-cyan-300" />
             <Input
               autoFocus
-              placeholder="Account name…"
+              placeholder="Account or deal name…"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="pl-9 bg-slate-900/50 border-cyan-500/30 text-cyan-100 placeholder:text-cyan-200/40"

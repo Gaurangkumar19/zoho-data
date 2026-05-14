@@ -114,7 +114,7 @@ function DashboardPage() {
         <div className="relative">
           <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-cyan-400" />
           <Input
-            placeholder="Search Account Name..."
+            placeholder="Search Account or Deal Name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => {
